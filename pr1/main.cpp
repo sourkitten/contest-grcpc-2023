@@ -183,10 +183,6 @@ void introsortById(struct alloy *alloys, int low, int high, int depthLimit) {
 
 /* Simple, stdin, line-by-line reader.
  * Gets first line, gets N more lines.
- * Gets N more lines, splitting by whitespace
- * Lines are of format `ID X Y`
- * `**NOTE** : strtok needs char pointer,
- * only when the pointer changes. Otherwise NULL!!!**`
  */
 void readInput(struct alloy *alloys, int alloy_count) {
     // Input reading using scanf
