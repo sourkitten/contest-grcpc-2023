@@ -184,7 +184,7 @@ void introsortById(struct alloy *alloys, int low, int high, int depthLimit) {
 /* Simple, stdin, line-by-line reader.
  * Gets first line, gets N more lines.
  */
-void readInput(struct alloy *alloys, int alloy_count) {
+static inline void readInput(struct alloy *alloys, int alloy_count) {
     // Input reading using scanf
     for (int i = 0; i < alloy_count; ++i) {
         scanf("%s %f %f", alloys[i].id, &alloys[i].x, &alloys[i].y);

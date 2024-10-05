@@ -1,7 +1,8 @@
 import random
+import sys
 
 # Number of alloys
-num_alloys = 10000000
+num_alloys = int(sys.argv[2])
 alloys_data = []
 
 # Create a sample of alloys with IDs and random flexibility and conductivity values
@@ -20,5 +21,5 @@ for i in range(num_alloys):
 output_data = [f"{num_alloys}"] + alloys_data
 
 # Write to a file "input_sample_"
-with open('input_sample_7', 'w') as file:
+with open(sys.argv[1], 'w') as file:
     file.write('\n'.join(output_data))
