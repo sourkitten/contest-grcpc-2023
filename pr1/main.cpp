@@ -1,6 +1,4 @@
-#include <unistd.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <math.h>
 
@@ -197,7 +195,7 @@ void readInput(struct alloy *alloys, int alloy_count) {
     }
 }
 
-int main(int argc, char *argv[])
+int main()
 {
     int alloy_num;
     scanf("%d", &alloy_num);  // Read the number of alloys
