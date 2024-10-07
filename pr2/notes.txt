@@ -1,0 +1,9 @@
+2D, 1 bit 2D array image:
+	bit maps!!!
+	max of 1000x1000!!
+Can collapse horizontally & vertically but not diagonally
+Edge tiles, always ground tiles:
+	can skip them
+
+
+Calculate number of lakes and square meters of each lake "K1 K2 K3"
