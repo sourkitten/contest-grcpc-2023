@@ -4,6 +4,12 @@ time:
 	./time.sh
 run:
 	./main.out < samples/input_sample_1
+all2:
+	g++ -O3 -o main2.out main.cpp
+time2:
+	./time2.sh
+run2:
+	./main2.out < samples/input_sample_1
 samples:
 	mkdir samples
 	cd samples
