@@ -2,6 +2,7 @@ using namespace std;
 
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 // debug macro
 #ifdef DEBUG
@@ -242,7 +243,8 @@ int main()
     DEBUG_PRINT("Map size: %dx%d\n", x_max, y_max);
 
     // TODO: check if it's possible to skip edge blocks
-    struct tile *map = (struct tile*) malloc(x_max*y_max*sizeof(struct tile));
+    struct tile map[x_max*y_max];
+    memset(map, 0, sizeof(map));
 
     if (map == NULL) {
         fprintf(stderr, "Memory allocation failed\n");
