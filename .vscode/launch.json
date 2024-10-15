@@ -1,0 +1,17 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "cppdbg",
+            "request": "launch",
+            "name": "Program 1, sample 1",
+            "program": "${workspaceFolder}/pr1/main.out",
+            "args": ["<", "${workspaceFolder/pr1/input_sample_2"],
+            "cwd": "${workspaceFolder}/pr1",
+            "preLaunchTask": "C/C++: g++ build active file"
+        }
+    ]
+}
