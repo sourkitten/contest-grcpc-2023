@@ -47,14 +47,14 @@ int partitionById(struct alloy *alloys, int low, int high) {
 }
 
 // Insertion sort for small arrays
-void insertionSort(struct alloy *alloys, int low, int high, int compareField) {
+void insertionSort(struct alloy *alloys, int low, int high, int compare_field) {
     for (int i = low + 1; i <= high; i++) {
         struct alloy key = alloys[i];
         int j = i - 1;
 
         // Compare based on the selected field (x or id)
-        while (j >= low && ((compareField == 0 && alloys[j].x > key.x) || 
-                            (compareField == 1 && strcmp(alloys[j].id, key.id) > 0))) {
+        while (j >= low && ((compare_field == 0 && alloys[j].x > key.x) || 
+                            (compare_field == 1 && strcmp(alloys[j].id, key.id) > 0))) {
             alloys[j + 1] = alloys[j];
             j--;
         }
@@ -63,13 +63,13 @@ void insertionSort(struct alloy *alloys, int low, int high, int compareField) {
 }
 
 // Quicksort function with Introsort for sorting by x
-void introsortByX(struct alloy *alloys, int low, int high, int depthLimit) {
+void introsortByX(struct alloy *alloys, int low, int high, int depth_limit) {
     int size = high - low + 1;
     if (size <= 16) {
         insertionSort(alloys, low, high, 0);  // Use insertion sort for small sizes
         return;
     }
-    if (depthLimit == 0) {
+    if (depth_limit == 0) {
         // If the recursion depth exceeds a threshold, use heapsort
         // Implementing heapsort
         for (int i = (size / 2) - 1; i >= 0; i--) {
@@ -117,18 +117,18 @@ void introsortByX(struct alloy *alloys, int low, int high, int depthLimit) {
         return;
     }
     int pi = partitionByX(alloys, low, high);  // Partitioning index
-    introsortByX(alloys, low, pi - 1, depthLimit - 1);  // Recursively sort before partition
-    introsortByX(alloys, pi + 1, high, depthLimit - 1);  // Recursively sort after partition
+    introsortByX(alloys, low, pi - 1, depth_limit - 1);  // Recursively sort before partition
+    introsortByX(alloys, pi + 1, high, depth_limit - 1);  // Recursively sort after partition
 }
 
 // Quicksort function with Introsort for sorting by ID
-void introsortById(struct alloy *alloys, int low, int high, int depthLimit) {
+void introsortById(struct alloy *alloys, int low, int high, int depth_limit) {
     int size = high - low + 1;
     if (size <= 16) {
         insertionSort(alloys, low, high, 1);  // Use insertion sort for small sizes
         return;
     }
-    if (depthLimit == 0) {
+    if (depth_limit == 0) {
         // If the recursion depth exceeds a threshold, use heapsort
         // Implementing heapsort
         for (int i = (size / 2) - 1; i >= 0; i--) {
@@ -176,8 +176,8 @@ void introsortById(struct alloy *alloys, int low, int high, int depthLimit) {
         return;
     }
     int pi = partitionById(alloys, low, high);  // Partitioning index
-    introsortById(alloys, low, pi - 1, depthLimit - 1);  // Recursively sort before partition
-    introsortById(alloys, pi + 1, high, depthLimit - 1);  // Recursively sort after partition
+    introsortById(alloys, low, pi - 1, depth_limit - 1);  // Recursively sort before partition
+    introsortById(alloys, pi + 1, high, depth_limit - 1);  // Recursively sort after partition
 }
 
 
@@ -201,8 +201,8 @@ int main()
 
     readInput(alloy, alloy_num);
 
-    int depthLimit = log(alloy_num);
-    introsortByX(alloy, 0, alloy_num-1, depthLimit);
+    int depth_limit = log(alloy_num);
+    introsortByX(alloy, 0, alloy_num-1, depth_limit);
 
     printf("Sorted Alloys:\n");
     for (int i = 0; i < alloy_num; i++) {
@@ -211,21 +211,21 @@ int main()
 
     struct alloy *dominant = (struct alloy*) malloc(sizeof(struct alloy)*alloy_num);
     dominant[0] = alloy[alloy_num-1];
-    int dominantIndex = 1;
+    int dominant_index = 1;
 
     for (int i = alloy_num-1; i >= 0; i--) {
-        if (dominant[dominantIndex-1].y < alloy[i].y) { // prev dominant Y < current Y
-            dominant[dominantIndex] = alloy[i];
-            dominantIndex++;
+        if (dominant[dominant_index-1].y < alloy[i].y) { // prev dominant Y < current Y
+            dominant[dominant_index] = alloy[i];
+            dominant_index++;
         }
     }
 
-    depthLimit = log(dominantIndex);
-    introsortById(dominant, 0, dominantIndex-1, depthLimit);
+    depth_limit = log(dominant_index);
+    introsortById(dominant, 0, dominant_index-1, depth_limit);
 
     printf("\n");
     printf("Dominant Alloys:\n");
-    for (int i = 0; i < dominantIndex; i++) {
+    for (int i = 0; i < dominant_index; i++) {
         printf("%s %.2f %.2f\n", dominant[i].id, dominant[i].x, dominant[i].y);
     }
 
