@@ -5,7 +5,7 @@ time:
 run:
 	./main.out < samples/input_sample_1
 all2:
-	g++ -O3 -o main2.out main.cpp
+	g++ -O3 -o main2.out main2.cpp
 time2:
 	./time2.sh
 run2:
