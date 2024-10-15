@@ -110,6 +110,8 @@ void collapseLake(struct tile *current, struct lake *current_lake) {
     printBits(neighbors);
     DEBUG_PRINT("\n");
     
+    // This is utterly fucking stupid, but it works.
+    // Note to self: Use a fucking bitmask and if statements next time..
     switch(neighbors) {
         case 0:
             DEBUG_PRINT("Dead end\n");
