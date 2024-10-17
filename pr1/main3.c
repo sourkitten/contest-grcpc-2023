@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
 struct alloy {
     char id[14];
@@ -116,7 +118,7 @@ static inline void readInput(struct alloy *dominant, int alloy_count) {
     scanf("%s %f %f", &(dominant->id), &(dominant->x), &(dominant->y));
     float max_x, max_y = dominant->x, dominant_y;
 
-    struct alloy *current = new struct alloy;
+    struct alloy *current = malloc(sizeof(struct alloy));
     // For every alloy in line
     for (int i = 1; i < alloy_count; ++i) {
         scanf("%s %f %f", &(current->id), &(current->x), &(current->y));
@@ -170,9 +172,9 @@ int main()
 
     // First to last
     for (int i = 0; i < dominant_index; i++) {
-        struct alloy *cdom = dominant + i;
-        if (cdom->x != 0) {
-            printf("%s %.2f %.2f\n", cdom->id, cdom->x, cdom->y);
+        struct alloy *cdom = dominant + dominant_index*sizeof(struct alloy);
+        if ((&dominant[i])->x != 0) {
+            printf("%s %.2f %.2f\n", (&dominant[i])->id, (&dominant[i])->x, (&dominant[i])->y);
         }
         //free(current->prev);
     }
