@@ -9,8 +9,6 @@ struct alloy {
     char id[16];
     float x;
     float y;
-
-
 };
 
 int dominant_index = 1;
@@ -57,6 +55,7 @@ static inline void readInput(struct alloy *dominant, int alloy_count) {
             dominant_index++;
         }
     }
+    free(current);
 }
 
 int main()
@@ -88,6 +87,8 @@ int main()
         }
         //free(current->prev);
     }
+
+    free(dominant);
 
     return 0;
 }

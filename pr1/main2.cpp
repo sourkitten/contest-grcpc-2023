@@ -3,7 +3,7 @@
 #include <math.h>
 
 struct alloy {
-    char id[14];
+    char id[16];
     float x;
     float y;
 };
@@ -114,7 +114,7 @@ void introsortById(struct alloy *alloys, int low, int high, int depth_limit) {
 static inline void readInput(struct alloy *dominant, int alloy_count) {
     // Input reading using scanf
     scanf("%s %f %f", &(dominant->id), &(dominant->x), &(dominant->y));
-    float max_x, max_y = dominant->x, dominant_y;
+    float max_x = dominant->x, max_y = dominant->y;
 
     struct alloy *current = new struct alloy;
     // For every alloy in line
@@ -135,7 +135,7 @@ static inline void readInput(struct alloy *dominant, int alloy_count) {
 
         // Check all dominant elements
         for (int j = 0; j < dominant_index; j++) {
-            struct alloy *cdom = &(dominant[j]);
+            struct alloy *cdom = dominant + j;
             // It's either already dominant, 
             if ((current->x > cdom->x) && (current->y > cdom->y))
                cdom->x = 0; // signal that element is no longer dominant
@@ -150,6 +150,8 @@ static inline void readInput(struct alloy *dominant, int alloy_count) {
             dominant_index++;
         }
     }
+
+    free(current);
 }
 
 int main()
@@ -176,6 +178,8 @@ int main()
         }
         //free(current->prev);
     }
+
+    free(dominant);
 
     return 0;
 }
