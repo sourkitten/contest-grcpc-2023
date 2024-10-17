@@ -10,6 +10,12 @@ time2:
 	./time2.sh
 run2:
 	./main2.out < samples/input_sample_1
+all_alt:
+	g++ -std=c++17 -O3 -o main_alt.out main_alt.cpp
+time_alt:
+	./time_alt.sh
+run_alt:
+	./main_alt.out < samples/input_sample_1
 samples:
 	mkdir samples
 	cd samples
